@@ -1,0 +1,4 @@
+libtiffxx.so.5 libtiffxx5 #MINVER#
+ LIBTIFFXX_4.0@LIBTIFFXX_4.0 4.0
+ (c++)"TIFFStreamOpen(char const*, std::basic_istream<char, std::char_traits<char> >*)@LIBTIFFXX_4.0" 4.0
+ (c++)"TIFFStreamOpen(char const*, std::basic_ostream<char, std::char_traits<char> >*)@LIBTIFFXX_4.0" 4.0
