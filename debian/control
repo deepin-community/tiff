@@ -11,14 +11,15 @@ Build-Depends: debhelper-compat (= 13),
                libzstd-dev,
                libwebp-dev,
                libxi-dev,
-               libxmu-dev,
                zlib1g-dev,
-               libdeflate-dev
-Standards-Version: 4.5.1
+               libdeflate-dev,
+               liblerc-dev [!s390x !hppa !powerpc !ppc64 !sparc64],
+               sphinx <!nodoc>
+Standards-Version: 4.6.1
 Homepage: https://libtiff.gitlab.io/libtiff/
 Rules-Requires-Root: no
 
-Package: libtiff5
+Package: libtiff6
 Architecture: any
 Multi-Arch: same
 Pre-Depends: ${misc:Pre-Depends}
@@ -29,7 +30,7 @@ Description: Tag Image File Format (TIFF) library
  (TIFF), a widely used format for storing image data.  This package
  includes the shared library.
 
-Package: libtiffxx5
+Package: libtiffxx6
 Architecture: any
 Multi-Arch: same
 Pre-Depends: ${misc:Pre-Depends}
@@ -49,10 +50,13 @@ Depends: libc6-dev | libc-dev,
          libjbig-dev,
          libjpeg-dev,
          liblzma-dev,
-         libtiff5 (= ${binary:Version}),
-         libtiffxx5 (= ${binary:Version}),
+         libzstd-dev,
+         libwebp-dev,
+         libtiff6 (= ${binary:Version}),
+         libtiffxx6 (= ${binary:Version}),
          zlib1g-dev,
          libdeflate-dev,
+         liblerc-dev [!s390x !hppa !powerpc !ppc64 !sparc64],
          ${misc:Depends}
 Replaces: libtiff4-dev (<< 4.0.3-6~),
           libtiff5-alt-dev (<< 4.0.3-6~),
@@ -71,6 +75,7 @@ Depends: libtiff-dev (>= 4.0.10-1),
          ${misc:Depends}
 Recommends: pkg-config
 Architecture: any
+Multi-Arch: same
 Description: Tag Image File Format library (TIFF), development files (transitional package)
  libtiff is a library providing support for the Tag Image File Format
  (TIFF), a widely used format for storing image data.  This package
@@ -107,7 +112,7 @@ Description: TIFF manipulation and conversion tools
 
 Package: libtiff-doc
 Section: doc
-Depends: ${misc:Depends}
+Depends: ${misc:Depends}, libjs-jquery, libjs-sphinxdoc, libjs-underscore
 Architecture: all
 Multi-Arch: foreign
 Description: TIFF manipulation and conversion documentation
