@@ -18,11 +18,11 @@ Copyright: 1988-1997 Sam Leffler
 License: Hylafax
 
 Files: debian/*
-Copyright: 1997-1999 Guy Maor
-	   1999-2004 Josip Rodin
-	   2004-2015 Jay Berkenbilt
-	   2015	     Ondřej Surý
-	   2015-     Laszlo Boszormenyi (GCS)
+Copyright: 1997-1999 Guy Maor <maor@debian.org>
+	   1999-2004 Josip Rodin <joy-packages@debian.org>
+	   2004-2015 Jay Berkenbilt <qjb@debian.org>
+	   2015	     Ondřej Surý <ondrej@debian.org>
+	   2015-     Laszlo Boszormenyi (GCS) <gcs@debian.org>
 License: Hylafax
 
 License: Hylafax

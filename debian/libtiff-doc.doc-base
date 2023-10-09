@@ -5,5 +5,5 @@ Abstract: Support for the Tag Image File Format (TIFF) for storing image data.
 Section: Graphics
 
 Format: HTML
-Index: /usr/share/doc/libtiff-doc/html/index.html
-Files: /usr/share/doc/libtiff-doc/html/*.html
+Index: /usr/share/doc/libtiff-doc/manual/index.html
+Files: /usr/share/doc/libtiff-doc/manual/*.html
