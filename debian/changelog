@@ -1,3 +1,9 @@
+tiff (4.5.1+git230720-1deepin0) unstable; urgency=medium
+
+  * No source change upload against GCC 12.
+
+ -- Tianyu Chen <sweetyfish@deepin.org>  Fri, 20 Sep 2024 12:20:02 +0800
+
 tiff (4.5.1+git230720-1) unstable; urgency=medium
 
   * Git snapshot, fixing the following security issues:
