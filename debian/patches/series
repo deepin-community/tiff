@@ -1,1 +1,5 @@
 no_smartquotes.patch
+CVE-2023-6277.patch
+CVE-2023-52355.patch
+CVE-2023-52356.patch
+CVE-2024-7006.patch

@@ -1,8 +1,35 @@
-tiff (4.5.1+git230720-1deepin0) unstable; urgency=medium
+tiff (4.5.1+git230720-5) unstable; urgency=high
 
-  * No source change upload against GCC 12.
+  * Backport security fix for CVE-2024-7006, NULL pointer dereference bug in
+    _TIFFMergeFields() (closes: #1078648).
 
- -- Tianyu Chen <sweetyfish@deepin.org>  Fri, 20 Sep 2024 12:20:02 +0800
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Thu, 15 Aug 2024 18:04:20 +0200
+
+tiff (4.5.1+git230720-4) unstable; urgency=high
+
+  * Backport security fix for CVE-2023-52355, an out-of-memory flaw that
+    could be triggered by passing a crafted tiff file with documentation
+    update how to prevent it.
+  * Backport security fix for CVE-2023-52356, a segment fault flaw that
+    could be triggered by passing a crafted tiff file (closes: #1061524).
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Sat, 27 Jan 2024 10:32:25 +0100
+
+tiff (4.5.1+git230720-3) unstable; urgency=medium
+
+  * Mark break on versions of libimager-perl that don't work with this tiff
+    version (closes: #1057326).
+  * Update Standards-Version to 4.6.2 .
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Sun, 03 Dec 2023 15:16:24 +0100
+
+tiff (4.5.1+git230720-2) unstable; urgency=high
+
+  * Backport security fix for CVE-2023-6277, passing a crafted tiff file to
+    TIFFOpen() API may allow a remote attacker to cause a denial of service
+    (closes: #1056751).
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Sun, 26 Nov 2023 10:25:48 +0100
 
 tiff (4.5.1+git230720-1) unstable; urgency=medium
 
