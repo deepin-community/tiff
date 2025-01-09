@@ -15,7 +15,7 @@ Build-Depends: debhelper-compat (= 13),
                libdeflate-dev,
                liblerc-dev [!s390x !hppa !powerpc !ppc64 !sparc64],
                sphinx <!nodoc>
-Standards-Version: 4.6.1
+Standards-Version: 4.6.2
 Homepage: https://libtiff.gitlab.io/libtiff/
 Rules-Requires-Root: no
 
@@ -25,6 +25,7 @@ Multi-Arch: same
 Pre-Depends: ${misc:Pre-Depends}
 Depends: ${misc:Depends},
          ${shlibs:Depends}
+Breaks: libimager-perl (<< 1.022+dfsg)
 Description: Tag Image File Format (TIFF) library
  libtiff is a library providing support for the Tag Image File Format
  (TIFF), a widely used format for storing image data.  This package
@@ -73,7 +74,7 @@ Package: libtiff5-dev
 Section: oldlibs
 Depends: libtiff-dev (>= 4.0.10-1),
          ${misc:Depends}
-Recommends: pkg-config
+Recommends: pkgconf
 Architecture: any
 Multi-Arch: same
 Description: Tag Image File Format library (TIFF), development files (transitional package)
