@@ -1,3 +1,25 @@
+tiff (4.7.0-3) unstable; urgency=medium
+
+  [ Santiago Vila <sanvila@debian.org> ]
+  * Do not run tests in parallel (closes: #1102073).
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Sat, 05 Apr 2025 07:48:49 +0200
+
+tiff (4.7.0-2) unstable; urgency=medium
+
+  * Backport upstream fix for test_directory.c not to fail on big-endian
+    machines.
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Fri, 28 Mar 2025 07:08:13 +0100
+
+tiff (4.7.0-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Update libtiff6 symbols.
+  * Update watch file.
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Thu, 27 Mar 2025 13:27:57 +0100
+
 tiff (4.5.1+git230720-5) unstable; urgency=high
 
   * Backport security fix for CVE-2024-7006, NULL pointer dereference bug in
