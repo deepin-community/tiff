@@ -39,7 +39,6 @@ const uint16_t bps = 8;
 const uint16_t photometric = PHOTOMETRIC_RGB;
 const uint16_t rows_per_strip = 100; /* up to 2**32-1 */
 const uint16_t planarconfig = PLANARCONFIG_CONTIG;
-const char *filename = "test_transferfunction_write_read.tif";
 
 /* Data and pointer to three transfer functions. */
 uint16_t *pTransferFunctionData;
@@ -144,7 +143,7 @@ failure:
  * Only if blnCloseFile is true, the file is closed.
  * TIFF **ptif returns the pointer to the opened TIFF file.
  */
-int write_basic_IFD_data(TIFF **ptif, const char *fileneme, int wrtTransferFunction, int nExtraSamples,
+int write_basic_IFD_data(TIFF **ptif, const char *filename, int wrtTransferFunction, int nExtraSamples,
                          int blnCloseFile)
 {
     unsigned char buf[3] = {0, 127, 255};
@@ -266,6 +265,9 @@ failure:
 /*==== main() ====*/
 int main()
 {
+
+    const char *filename = "test_transferfunction_write_read.tif";
+
     if (setup_transfer_functions())
         return 1;
 
@@ -273,7 +275,7 @@ int main()
     TIFF *tif = NULL;
 
     fprintf(stderr,
-            "--- Testing TIFF_TRANSFERFUNCTION tag writing and reding. ---\n    Expect 6 warning messages ...\n");
+            "--- Testing TIFF_TRANSFERFUNCTION tag writing and reading. ---\n    Expect 6 warning messages ...\n");
 
     /* Test with RGB data */
     spp = 3;
