@@ -1,3 +1,12 @@
+tiff (4.7.0-5) unstable; urgency=high
+
+  * Backport security fix for CVE-2025-8961, double free and memory leak in
+    the tiffcrop tool (closes: #1111317).
+  * Update watch file.
+  * Update Standards-Version to 4.7.2 .
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Wed, 10 Sep 2025 16:53:31 +0200
+
 tiff (4.7.0-4) unstable; urgency=high
 
   * Backport security fix for CVE-2025-9165, tiffcmp memory leak when second
