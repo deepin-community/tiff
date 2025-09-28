@@ -6,6 +6,7 @@ libtiff.so.6 libtiff6 #MINVER#
  LIBTIFF_4.4@LIBTIFF_4.4 4.5.0~rc1
  LIBTIFF_4.5@LIBTIFF_4.5 4.5.0~rc1
  LIBTIFF_4.6.1@LIBTIFF_4.6.1 4.7.0
+ LIBTIFF_4.7.1@LIBTIFF_4.7.1 4.7.1
  TIFFAccessTagMethods@LIBTIFF_4.0 4.0.3
  TIFFCIELabToRGBInit@LIBTIFF_4.0 4.0.3
  TIFFCIELabToXYZ@LIBTIFF_4.0 4.0.3
@@ -94,6 +95,7 @@ libtiff.so.6 libtiff6 #MINVER#
  TIFFOpenOptionsSetErrorHandlerExtR@LIBTIFF_4.5 4.5.0~rc1
  TIFFOpenOptionsSetMaxCumulatedMemAlloc@LIBTIFF_4.6.1 4.7.0
  TIFFOpenOptionsSetMaxSingleMemAlloc@LIBTIFF_4.5 4.5.0~rc1
+ TIFFOpenOptionsSetWarnAboutUnknownTags@LIBTIFF_4.7.1 4.7.1
  TIFFOpenOptionsSetWarningHandlerExtR@LIBTIFF_4.5 4.5.0~rc1
  TIFFPrintDirectory@LIBTIFF_4.0 4.0.3
  TIFFRGBAImageBegin@LIBTIFF_4.0 4.0.3
