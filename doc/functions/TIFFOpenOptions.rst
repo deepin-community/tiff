@@ -24,8 +24,6 @@ Synopsis
 
 .. c:function:: void TIFFOpenOptionsSetWarningHandlerExtR(TIFFOpenOptions* opts, TIFFErrorHandlerExtR handler, void* warnhandler_user_data)
 
-.. c:function:: void TIFFOpenOptionsSetWarnAboutUnknownTags(TIFFOpenOptions *opts, int warn_about_unknown_tags)
-
 Description
 -----------
 
@@ -72,11 +70,6 @@ The *errorhandler_user_data* argument may be NULL.
 :c:func:`TIFFOpenOptionsSetWarningHandlerExtR` works like
 :c:func:`TIFFOpenOptionsSetErrorHandlerExtR` but for the warning handler,
 which is invoked through  :c:func:`TIFFWarningExtR`
-
-:c:func:`TIFFOpenOptionsSetWarnAboutUnknownTags` sets whether libtiff should
-emit a warning when encountering a unknown tag. This function has been added in
-libtiff 4.7.1 and the default value is FALSE (change of behaviour compared to
-earlier versions).
 
 Example
 -------

@@ -25,7 +25,6 @@
 #include "libport.h"
 #include "tif_config.h"
 
-#include <math.h> /* for isfinite() */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -482,7 +481,7 @@ static uint64_t ReadDirectory(int fd, unsigned int ix, uint64_t off)
         }
         if (!datafits)
         {
-            datamem = _TIFFmalloc((tmsize_t)datasize);
+            datamem = _TIFFmalloc(datasize);
             if (datamem)
             {
                 if (_TIFF_lseek_f(fd, (_TIFF_off_t)dataoffset, 0) !=
@@ -492,7 +491,7 @@ static uint64_t ReadDirectory(int fd, unsigned int ix, uint64_t off)
                     _TIFFfree(datamem);
                     datamem = NULL;
                 }
-                else if (read(fd, datamem, (unsigned int)datasize) !=
+                else if (read(fd, datamem, (size_t)datasize) !=
                          (tmsize_t)datasize)
                 {
                     Error("Read error accessing tag %u value", tag);
@@ -799,7 +798,7 @@ static void PrintData(FILE *fd, uint16_t type, uint32_t count,
             uint32_t *lp = (uint32_t *)data;
             while (count-- > 0)
             {
-                if (lp[1] == 0 || !isfinite((double)lp[1]))
+                if (lp[1] == 0)
                     fprintf(fd, "%sNan (%" PRIu32 "/%" PRIu32 ")", sep, lp[0],
                             lp[1]);
                 else

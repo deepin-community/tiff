@@ -45,7 +45,7 @@ int test(int classictif, int height, int tiled)
     const char *filename = "defer_strile_loading.tif";
     TIFF *tif;
     int i;
-    uint64_t ret = 0;
+    int ret = 0;
     FILE *f;
 
     (void)ret;
@@ -141,7 +141,7 @@ int test(int classictif, int height, int tiled)
 
                 {
                     int err = 0;
-                    uint64_t offset, size;
+                    int offset, size;
                     unsigned char inputbuffer[256];
                     unsigned char tilebuffer[256];
 
@@ -154,16 +154,7 @@ int test(int classictif, int height, int tiled)
                     assert(size == 256);
                     assert(err == 0);
 
-                    if (offset > INT32_MAX)
-                    {
-                        fprintf(stderr,
-                                "Offset %" PRId64 " exceeds fseek limit.\n",
-                                offset);
-                        TIFFClose(tif);
-                        fclose(f);
-                        return 1;
-                    }
-                    fseek(f, (long)offset, SEEK_SET);
+                    fseek(f, offset, SEEK_SET);
                     {
                         size_t nread = fread(inputbuffer, 256, 1, f);
                         (void)nread;
@@ -209,7 +200,7 @@ int test(int classictif, int height, int tiled)
 
                 {
                     int err = 0;
-                    uint64_t offset, size;
+                    int offset, size;
                     unsigned char inputbuffer[1];
                     unsigned char tilebuffer[1];
 
@@ -222,16 +213,7 @@ int test(int classictif, int height, int tiled)
                     assert(size == 1);
                     assert(err == 0);
 
-                    if (offset > INT32_MAX)
-                    {
-                        fprintf(stderr,
-                                "Offset %" PRId64 " exceeds fseek limit.\n",
-                                offset);
-                        TIFFClose(tif);
-                        fclose(f);
-                        return 1;
-                    }
-                    fseek(f, (long)offset, SEEK_SET);
+                    fseek(f, offset, SEEK_SET);
                     {
                         size_t nread = fread(inputbuffer, 1, 1, f);
                         (void)nread;

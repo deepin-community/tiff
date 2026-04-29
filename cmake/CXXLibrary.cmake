@@ -24,9 +24,9 @@
 # OF THIS SOFTWARE.
 
 # C++ support
-option(tiff-cxx "Enable C++ stream API building (requires C++ compiler)" ON)
+option(cxx "Enable C++ stream API building (requires C++ compiler)" ON)
 set(CXX_SUPPORT FALSE)
-if (tiff-cxx)
+if (cxx)
     enable_language(CXX)
     set(CXX_SUPPORT TRUE)
 endif()

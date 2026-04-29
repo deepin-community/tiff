@@ -65,9 +65,6 @@ or :c:func:`TIFFClientOpenExt`.
 Furthermore, a **custom defined data structure** *user_data* for the
 warning handler can be given along.
 
-Please refer to :doc:`/functions/TIFFOpenOptions` for how to setup the
-application-specific handler introduced with ``libtiff`` 4.5.
-
 Note
 ----
 
@@ -90,7 +87,7 @@ Return values
 returns a reference to the previous warning handler function.
 
 :c:func:`TIFFWarningHandlerExtR` returns an integer as "stop" to control the call
-of further warning handler functions within :c:func:`TIFFWarningExtR`:
+of furhter warning handler functions within :c:func:`TIFFWarningExtR`:
 
   - 0: both functions :c:func:`TIFFWarningHandler` and :c:func:`TIFFWarningHandlerExt` are called.
   - non-zero: no further warning message function is called.
@@ -100,6 +97,5 @@ See also
 
 :doc:`TIFFError` (3tiff),
 :doc:`TIFFOpen` (3tiff),
-:doc:`/functions/TIFFOpenOptions`,
 :doc:`libtiff` (3tiff),
 printf (3)

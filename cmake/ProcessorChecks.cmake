@@ -29,9 +29,7 @@ include(TestBigEndian)
 # CPU endianness
 test_big_endian(HOST_BIG_ENDIAN)
 if(HOST_BIG_ENDIAN)
-    set(WORDS_BIGENDIAN TRUE)
-else()
-    set(WORDS_BIGENDIAN FALSE)
+    add_definitions(-DWORDS_BIGENDIAN)
 endif()
 
 # IEEE floating point

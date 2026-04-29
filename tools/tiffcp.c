@@ -1045,23 +1045,7 @@ static int tiffcp(TIFF *in, TIFF *out)
                     }
                 }
             }
-            if (preset != -1)
-            {
-                switch (compression)
-                {
-                    case COMPRESSION_ADOBE_DEFLATE:
-                    case COMPRESSION_DEFLATE:
-                        TIFFSetField(out, TIFFTAG_ZIPQUALITY, preset);
-                        break;
-                    case COMPRESSION_LZMA:
-                        TIFFSetField(out, TIFFTAG_LZMAPRESET, preset);
-                        break;
-                    case COMPRESSION_ZSTD:
-                        TIFFSetField(out, TIFFTAG_ZSTD_LEVEL, preset);
-                        break;
-                }
-            }
-            break;
+            /*fallthrough*/
         case COMPRESSION_WEBP:
             if (preset != -1)
             {
@@ -1112,7 +1096,7 @@ static int tiffcp(TIFF *in, TIFF *out)
             TIFFSetField(out, TIFFTAG_NUMBEROFINKS, ninks);
             if (TIFFGetField(in, TIFFTAG_INKNAMES, &inknames))
             {
-                size_t inknameslen = strlen(inknames) + 1;
+                int inknameslen = strlen(inknames) + 1;
                 const char *cp = inknames;
                 while (ninks > 1)
                 {
@@ -1121,14 +1105,7 @@ static int tiffcp(TIFF *in, TIFF *out)
                     inknameslen += (strlen(cp) + 1);
                     ninks--;
                 }
-                if (inknameslen <= INT_MAX)
-                    TIFFSetField(out, TIFFTAG_INKNAMES, (int)inknameslen,
-                                 inknames);
-                else
-                    TIFFError(TIFFFileName(in),
-                              "Error, length of inknames= %" PRIu64
-                              " exceeds size of int ",
-                              (uint64_t)inknameslen);
+                TIFFSetField(out, TIFFTAG_INKNAMES, inknameslen, inknames);
             }
         }
     }
@@ -1567,7 +1544,7 @@ bad:
 }
 
 static void cpStripToTile(uint8_t *out, uint8_t *in, uint32_t rows,
-                          uint32_t cols, int64_t outskew, int64_t inskew)
+                          uint32_t cols, int outskew, int64_t inskew)
 {
     while (rows-- > 0)
     {
@@ -1629,13 +1606,13 @@ static int cpImage(TIFF *in, TIFF *out, readFunc fin, writeFunc fout,
     int status = 0;
     tdata_t buf = NULL;
     tsize_t scanlinesize = TIFFRasterScanlineSize(in);
+    tsize_t bytes = scanlinesize * (tsize_t)imagelength;
     /*
      * XXX: Check for integer overflow.
      */
     if (scanlinesize && imagelength &&
-        ((TIFF_TMSIZE_T_MAX / (tmsize_t)imagelength) > scanlinesize))
+        bytes / (tsize_t)imagelength == scanlinesize)
     {
-        tsize_t bytes = scanlinesize * (tsize_t)imagelength;
         buf = limitMalloc(bytes);
         if (buf)
         {
@@ -1654,8 +1631,7 @@ static int cpImage(TIFF *in, TIFF *out, readFunc fin, writeFunc fout,
     }
     else
     {
-        TIFFError(TIFFFileName(in),
-                  "Error, no space for image buffer - integer overflow");
+        TIFFError(TIFFFileName(in), "Error, no space for image buffer");
     }
 
     return status;
@@ -1729,40 +1705,13 @@ done:
     return status;
 }
 
-/* This is a helper function. */
-static uint32_t _TIFFCastSSizeToUInt32(tmsize_t val, const char *module)
-{
-    if (val < 0)
-    {
-        TIFFError(module, "Unsigned integer underflow (negative)");
-        return 0;
-    }
-    /* sizeof(tmsize_t) is determined by SIZEOF_SIZE_T */
-#ifdef SIZEOF_SIZE_T
-#if SIZEOF_SIZE_T > 4
-    if (val > UINT32_MAX)
-    {
-        TIFFError(module, "Integer overflow");
-        return 0;
-    }
-#endif
-#else
-#pragma message(                                                               \
-    "---- Error: SIZEOF_SIZE_T not defined. Generate a compile error. ----")
-    SIZEOF_SIZE_T
-#endif
-    return (uint32_t)val;
-}
-
 DECLAREreadFunc(readContigTilesIntoBuffer)
 {
     int status = 1;
     tsize_t tilesize = TIFFTileSize(in);
     tdata_t tilebuf;
-    uint32_t imagew = _TIFFCastSSizeToUInt32(TIFFScanlineSize(in),
-                                             "readContigTilesIntoBuffer");
-    uint32_t tilew = _TIFFCastSSizeToUInt32(TIFFTileRowSize(in),
-                                            "readContigTilesIntoBuffer");
+    uint32_t imagew = TIFFScanlineSize(in);
+    uint32_t tilew = TIFFTileRowSize(in);
     int64_t iskew = (int64_t)imagew - (int64_t)tilew;
     uint8_t *bufp = (uint8_t *)buf;
     uint32_t tw, tl;
@@ -1813,10 +1762,8 @@ done:
 DECLAREreadFunc(readSeparateTilesIntoBuffer)
 {
     int status = 1;
-    uint32_t imagew = _TIFFCastSSizeToUInt32(TIFFRasterScanlineSize(in),
-                                             "readSeparateTilesIntoBuffer");
-    uint32_t tilew = _TIFFCastSSizeToUInt32(TIFFTileRowSize(in),
-                                            "readSeparateTilesIntoBuffer");
+    uint32_t imagew = TIFFRasterScanlineSize(in);
+    uint32_t tilew = TIFFTileRowSize(in);
     int iskew;
     tsize_t tilesize = TIFFTileSize(in);
     tdata_t tilebuf;
@@ -1995,10 +1942,8 @@ DECLAREwriteFunc(writeBufferToSeparateStrips)
 
 DECLAREwriteFunc(writeBufferToContigTiles)
 {
-    uint32_t imagew = _TIFFCastSSizeToUInt32(TIFFScanlineSize(out),
-                                             "writeBufferToContigTiles");
-    uint32_t tilew = _TIFFCastSSizeToUInt32(TIFFTileRowSize(out),
-                                            "writeBufferToContigTiles");
+    uint32_t imagew = TIFFScanlineSize(out);
+    uint32_t tilew = TIFFTileRowSize(out);
     int iskew = imagew - tilew;
     tsize_t tilesize = TIFFTileSize(out);
     tdata_t obuf;
@@ -2053,12 +1998,9 @@ DECLAREwriteFunc(writeBufferToContigTiles)
 
 DECLAREwriteFunc(writeBufferToSeparateTiles)
 {
-    uint32_t imagew = _TIFFCastSSizeToUInt32(TIFFScanlineSize(out),
-                                             "writeBufferToSeparateTiles");
-    uint32_t tilew = _TIFFCastSSizeToUInt32(TIFFTileRowSize(out),
-                                            "writeBufferToSeparateTiles");
-    uint32_t iimagew = _TIFFCastSSizeToUInt32(TIFFRasterScanlineSize(out),
-                                              "writeBufferToSeparateTiles");
+    uint32_t imagew = TIFFScanlineSize(out);
+    tsize_t tilew = TIFFTileRowSize(out);
+    uint32_t iimagew = TIFFRasterScanlineSize(out);
     int iskew = iimagew - tilew * spp;
     tsize_t tilesize = TIFFTileSize(out);
     tdata_t obuf;

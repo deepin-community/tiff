@@ -44,7 +44,7 @@ int test(const char *mode, int tiled, int height)
     const char *filename = "defer_strile_writing.tif";
     TIFF *tif;
     int i;
-    tmsize_t ret = 0;
+    int ret = 0;
     (void)ret;
 
     tif = TIFFOpen(filename, mode);

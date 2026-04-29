@@ -1,36 +1,17 @@
-tiff (4.7.1-1deepin1) unstable; urgency=medium
+tiff (4.7.0-3+deb13u2) trixie-security; urgency=medium
 
-  * Fix CVE-2026-4775: prevent integer overflow and later heap overflow
-    on images with huge width in YCbCr tile decoding functions
+  * CVE-2026-4775 (Closes: #1132632)
 
- -- deepin-ci-robot <packages@deepin.org>  Mon, 13 Apr 2026 19:56:53 +0800
+ -- Moritz Mühlenhoff <jmm@debian.org>  Tue, 07 Apr 2026 00:05:59 +0200
 
-tiff (4.7.1-1) unstable; urgency=medium
+tiff (4.7.0-3+deb13u1) trixie-security; urgency=medium
 
-  * New upstream release.
-  * Update libtiff6 symbols.
+  * CVE-2024-13978 (Closes: #1111323)
+  * CVE-2025-8961 (Closes: #1111317)
+  * CVE-2025-9165 (Closes: #1111878)
+  * CVE-2025-9900
 
- -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Sun, 21 Sep 2025 14:39:50 +0200
-
-tiff (4.7.0-5) unstable; urgency=high
-
-  * Backport security fix for CVE-2025-8961, double free and memory leak in
-    the tiffcrop tool (closes: #1111317).
-  * Update watch file.
-  * Update Standards-Version to 4.7.2 .
-
- -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Wed, 10 Sep 2025 16:53:31 +0200
-
-tiff (4.7.0-4) unstable; urgency=high
-
-  * Backport security fix for CVE-2025-9165, tiffcmp memory leak when second
-    file cannot be opened (closes: #1111878).
-  * Backport security fix for CVE-2024-13978, potential division-by-zero in
-    the tiff2pdf tool (closes: #1111323).
-  * Fix fax2ps regression where TIFFTAG_FAXFILLFUNC is being used rather than
-    an output buffer.
-
- -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Sun, 24 Aug 2025 11:28:17 +0200
+ -- Moritz Mühlenhoff <jmm@debian.org>  Sat, 27 Sep 2025 18:03:27 +0200
 
 tiff (4.7.0-3) unstable; urgency=medium
 

@@ -1,1 +1,6 @@
-cve_2026_4775.patch
+fix-test_directory.patch
+CVE-2024-13978.patch
+CVE-2025-8961.patch
+CVE-2025-9165.patch
+CVE-2025-9900.patch
+CVE-2026-4775.patch
