@@ -1,3 +1,13 @@
+tiff (4.7.1-2deepin1) unstable; urgency=medium
+
+  * Fix CVE-2026-12912: Heap buffer overflow in PixarLog codec
+    - Fix heap-buffer-overflow in 8BITABGR decode with stride 3
+    - Error out on invalid ABGR output buffer sizes
+    - Complete ABGR bounds check for multi-row strip decoding
+    - Upstream: https://gitlab.com/libtiff/libtiff/-/commit/ba2b04b
+
+ -- deepin-ci-robot <packages@deepin.org>  Thu, 02 Jul 2026 20:51:00 +0800
+
 tiff (4.7.1-2) unstable; urgency=high
 
   * Backport security fix for CVE-2026-4775, signed integer overflow
