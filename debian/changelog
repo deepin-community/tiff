@@ -1,3 +1,11 @@
+tiff (4.7.1-2deepin1) unstable; urgency=high
+
+  * Fix CVE-2026-12912: Heap buffer overflow in PixarLog TIFF codec
+    when decoding PixarLog-compressed images with PIXARLOGDATAFMT_8BITABGR
+    output format and specific stride values.
+
+ -- deepin-ci-robot <packages@deepin.org>  Thu, 02 Jul 2026 22:10:00 +0800
+
 tiff (4.7.1-2) unstable; urgency=high
 
   * Backport security fix for CVE-2026-4775, signed integer overflow
