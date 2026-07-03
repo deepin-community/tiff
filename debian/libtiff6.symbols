@@ -63,6 +63,7 @@ libtiff.so.6 libtiff6 #MINVER#
  TIFFGetField@LIBTIFF_4.0 4.0.3
  TIFFGetFieldDefaulted@LIBTIFF_4.0 4.0.3
  TIFFGetMapFileProc@LIBTIFF_4.0 4.0.3
+ TIFFGetMaxCompressionRatio@LIBTIFF_4.7.1 4.7.1
  TIFFGetMode@LIBTIFF_4.0 4.0.3
  TIFFGetReadProc@LIBTIFF_4.0 4.0.3
  TIFFGetSeekProc@LIBTIFF_4.0 4.0.3
