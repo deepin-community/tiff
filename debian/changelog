@@ -1,3 +1,9 @@
+tiff (4.7.1-3deepin1) unstable; urgency=medium
+
+  * fix(cve): CVE-2025-61145
+
+ -- deepin-ci-robot <packages@deepin.org>  Fri, 17 Jul 2026 20:13:31 +0800
+
 tiff (4.7.1-3) unstable; urgency=high
 
   [ Laszlo Boszormenyi (GCS) ]
