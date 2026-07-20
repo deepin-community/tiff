@@ -1,6 +1,7 @@
 tiff (4.7.1-3deepin1) unstable; urgency=medium
 
-  * fix(cve): CVE-2025-61145
+  * Security fix for CVE-2025-61145: double-free in tiffcrop (already fixed in
+    upstream 4.7.1).
 
  -- deepin-ci-robot <packages@deepin.org>  Fri, 17 Jul 2026 20:13:31 +0800
 
